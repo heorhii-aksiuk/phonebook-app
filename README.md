@@ -1,2 +1,3 @@
-# goit-react-hw-repeat
-Just some practice. React
+# phonebook-app
+
+Portfolio project. React
