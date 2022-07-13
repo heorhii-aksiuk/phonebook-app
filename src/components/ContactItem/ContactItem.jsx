@@ -1,21 +1,15 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-export class ContactItem extends Component {
-  render() {
-    const { name, number, removeContact } = this.props
-    return (
-      <li key={name}>
-        {name} - {number}
-        <Button onClick={removeContact} type="button">
-          Delete
-        </Button>
-      </li>
-    )
-  }
+export default function ContactItem({ name, number, removeContact }) {
+  return (
+    <li key={name}>
+      {name} - {number}
+      <Button onClick={removeContact} type="button">
+        Delete
+      </Button>
+    </li>
+  );
 }
-
-export default ContactItem
 
 const Button = styled.button`
   margin: 5px;
@@ -27,4 +21,4 @@ const Button = styled.button`
   :hover {
     background-color: #5858d7;
   }
-`
+`;

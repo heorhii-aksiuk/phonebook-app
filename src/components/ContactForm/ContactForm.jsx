@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { nanoid } from 'nanoid';
+import { useId, useState } from 'react';
 import styled from 'styled-components';
 
 const INPUT = {
@@ -10,67 +9,61 @@ const INPUT = {
   },
   NUMBER: {
     PATTERN: '+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}',
+    //TODO: don't work, need to change pattern
     TITLE:
       'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +',
   },
 };
 
-class ContactForm extends Component {
-  state = {
-    name: '',
-    number: '',
+export default function ContactForm({ onSubmitForm }) {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  const id = useId();
+  console.log(id);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    if (name === 'name') setName(value);
+    if (name === 'number') setNumber(value);
   };
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onSubmitForm({ name, number });
+    setName('');
+    setNumber('');
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const { onSubmitForm } = this.props;
-    onSubmitForm({ ...this.state });
-    this.setState({ name: '', number: '' });
-  };
-
-  inputNameId = nanoid(5);
-  inputNumberId = nanoid(5);
-
-  render() {
-    const { name, number } = this.state;
-    return (
-      <>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor={this.inputNameId}>Name</label>
-          <input
-            value={name}
-            onChange={this.handleChange}
-            type="text"
-            name="name"
-            id={this.inputNameId}
-            pattern={INPUT.NAME.PATTERN}
-            title={INPUT.NAME.TITLE}
-            required
-          />
-          <label htmlFor={this.inputNumberId}>Number</label>
-          <input
-            value={number}
-            onChange={this.handleChange}
-            type="tel"
-            name="number"
-            id={this.inputNumberId}
-            pattern={INPUT.NUMBER.PATTERN}
-            title={INPUT.NUMBER.TITLE}
-            required
-          />
-          <Button type="submit">Add contact</Button>
-        </form>
-      </>
-    );
-  }
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor={id + '-name'}>Name</label>
+        <input
+          value={name}
+          onChange={handleChange}
+          type="text"
+          name="name"
+          id={id + '-name'}
+          pattern={INPUT.NAME.PATTERN}
+          title={INPUT.NAME.TITLE}
+          required
+        />
+        <label htmlFor={id + '-number'}>Number</label>
+        <input
+          value={number}
+          onChange={handleChange}
+          type="tel"
+          name="number"
+          id={id + '-number'}
+          pattern={INPUT.NUMBER.PATTERN}
+          title={INPUT.NUMBER.TITLE}
+          required
+        />
+        <Button type="submit">Add contact</Button>
+      </form>
+    </>
+  );
 }
-
-export default ContactForm;
 
 const Button = styled.button`
   margin: 5px;
