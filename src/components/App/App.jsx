@@ -13,7 +13,9 @@ export default function App() {
 
   useEffect(() => {
     try {
-      const savedContacts = JSON.parse(localStorage.getItem(LS_CONTACTS_KEY));
+      const savedContacts = JSON.parse(
+        window.localStorage.getItem(LS_CONTACTS_KEY),
+      );
       const condition =
         Array.isArray(savedContacts) &&
         savedContacts.every((contact) => contact.name && contact.number);
@@ -24,13 +26,15 @@ export default function App() {
     } catch (error) {
       console.error(
         LS_PARSE_ERROR_MESSAGE,
-        localStorage.setItem(LS_CONTACTS_KEY, JSON.stringify([])),
+        window.localStorage.setItem(LS_CONTACTS_KEY, JSON.stringify([])),
       );
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(LS_CONTACTS_KEY, JSON.stringify(contacts));
+    if (contacts.length > 0) {
+      window.localStorage.setItem(LS_CONTACTS_KEY, JSON.stringify(contacts));
+    }
   }, [contacts]);
 
   const handleSubmit = (newContact) => {

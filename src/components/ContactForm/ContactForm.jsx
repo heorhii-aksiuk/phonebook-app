@@ -19,7 +19,6 @@ export default function ContactForm({ onSubmitForm }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const id = useId();
-  console.log(id);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
