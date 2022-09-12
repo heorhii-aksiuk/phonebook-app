@@ -2,40 +2,42 @@ import { useState, useEffect } from 'react';
 import Section from '../Section/Section';
 import ContactForm from '../ContactForm/ContactForm';
 import ContactList from '../ContactList/ContactList';
+import { useLocalStorage } from '../../hooks';
 
 const LS_CONTACTS_KEY = 'contacts';
 const LS_PARSE_ERROR_MESSAGE = `Can't parse "contacts" field from localStorage, so it's reset!`;
 const ALERT_MESSAGE = (name) => `${name} is already exists!`;
 
 export default function App() {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useLocalStorage(LS_CONTACTS_KEY, []);
   const [filter, setFilter] = useState('');
+  // const [contacts, setContacts] = useState([]);
 
-  useEffect(() => {
-    try {
-      const savedContacts = JSON.parse(
-        window.localStorage.getItem(LS_CONTACTS_KEY),
-      );
-      const condition =
-        Array.isArray(savedContacts) &&
-        savedContacts.every((contact) => contact.name && contact.number);
+  // useEffect(() => {
+  //   try {
+  //     const savedContacts = JSON.parse(
+  //       window.localStorage.getItem(LS_CONTACTS_KEY),
+  //     );
+  //     const condition =
+  //       Array.isArray(savedContacts) &&
+  //       savedContacts.every((contact) => contact.name && contact.number);
 
-      if (condition) {
-        setContacts([...savedContacts]);
-      }
-    } catch (error) {
-      console.error(
-        LS_PARSE_ERROR_MESSAGE,
-        window.localStorage.setItem(LS_CONTACTS_KEY, JSON.stringify([])),
-      );
-    }
-  }, []);
+  //     if (condition) {
+  //       setContacts([...savedContacts]);
+  //     }
+  //   } catch (error) {
+  //     console.error(
+  //       LS_PARSE_ERROR_MESSAGE,
+  //       window.localStorage.setItem(LS_CONTACTS_KEY, JSON.stringify([])),
+  //     );
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    if (contacts.length > 0) {
-      window.localStorage.setItem(LS_CONTACTS_KEY, JSON.stringify(contacts));
-    }
-  }, [contacts]);
+  // useEffect(() => {
+  //   if (contacts.length > 0) {
+  //     window.localStorage.setItem(LS_CONTACTS_KEY, JSON.stringify(contacts));
+  //   }
+  // }, [contacts]);
 
   const handleSubmit = (newContact) => {
     if (contacts.some((contact) => contact.name === newContact.name)) {
