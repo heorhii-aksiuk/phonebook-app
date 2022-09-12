@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 
-export default function useLocalStorage(key, initialValue) {
-  const [state, setState] = useState(initialValue);
+export default function useLocalStorage(key) {
+  const [state, setState] = useState([]);
 
   useEffect(() => {
     try {
       const savedData = JSON.parse(window.localStorage.getItem(key));
-      console.log(savedData);
       const condition = Array.isArray(savedData);
 
       if (condition) {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import Section from '../Section/Section';
 import ContactForm from '../ContactForm/ContactForm';
 import ContactList from '../ContactList/ContactList';
@@ -7,7 +7,7 @@ import { useLocalStorage } from '../../hooks';
 const ALERT_MESSAGE = (name) => `${name} is already exists!`;
 
 export default function App() {
-  const [contacts, setContacts] = useLocalStorage('contacts', []);
+  const [contacts, setContacts] = useLocalStorage('contacts');
   const [filter, setFilter] = useState('');
 
   const handleSubmit = (newContact) => {
@@ -26,11 +26,13 @@ export default function App() {
     setContacts(contacts.filter((contact) => contact.name !== name));
   };
 
-  const normalizeFilter = filter.toLowerCase();
-  const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(normalizeFilter),
+  const filteredContacts = useMemo(
+    () =>
+      contacts.filter((contact) =>
+        contact.name.toLowerCase().includes(filter.toLowerCase()),
+      ),
+    [contacts, filter],
   );
-  // TODO: memo
 
   return (
     <>
