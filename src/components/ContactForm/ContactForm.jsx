@@ -1,5 +1,6 @@
-import { useId, useState } from 'react';
-import styled from 'styled-components';
+import { useId, useState } from 'react'
+// import Modal from '../Modal'
+import Button from '../Button'
 
 const INPUT = {
   NAME: {
@@ -13,25 +14,25 @@ const INPUT = {
     TITLE:
       'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +',
   },
-};
+}
 
 export default function ContactForm({ onSubmitForm }) {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-  const id = useId();
+  const [name, setName] = useState('')
+  const [number, setNumber] = useState('')
+  const id = useId()
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    if (name === 'name') setName(value);
-    if (name === 'number') setNumber(value);
-  };
+    const { name, value } = event.target
+    if (name === 'name') setName(value)
+    if (name === 'number') setNumber(value)
+  }
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    onSubmitForm({ name, number });
-    setName('');
-    setNumber('');
-  };
+    event.preventDefault()
+    onSubmitForm({ name, number })
+    setName('')
+    setNumber('')
+  }
 
   return (
     <>
@@ -60,18 +61,7 @@ export default function ContactForm({ onSubmitForm }) {
         />
         <Button type="submit">Add contact</Button>
       </form>
+      {/* <Modal></Modal> */}
     </>
-  );
+  )
 }
-
-const Button = styled.button`
-  margin: 5px;
-  background-color: #7b7bde;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-
-  :hover {
-    background-color: #5858d7;
-  }
-`;
