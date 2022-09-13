@@ -1,8 +1,8 @@
 import { useState, useMemo } from 'react';
-import Section from '../Section/Section';
-import ContactForm from '../ContactForm/ContactForm';
-import ContactList from '../ContactList/ContactList';
 import { useLocalStorage } from '../../hooks';
+import Section from '../Section';
+import ContactForm from '../ContactForm';
+import ContactList from '../ContactList';
 
 const ALERT_MESSAGE = (name) => `${name} is already exists!`;
 
