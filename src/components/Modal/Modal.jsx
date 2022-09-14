@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import { Overlay, Box } from './Modal.styled'
+import { MdOutlineClose } from 'react-icons/md'
+import { Overlay, Box, CloseButton } from './Modal.styled'
 
 const CLOSE_INFO = 'Click to close'
 
@@ -31,7 +32,12 @@ export default function Modal({ onClose, children }) {
 
   return createPortal(
     <Overlay onClick={handleClick} title={CLOSE_INFO}>
-      <Box>{children}</Box>
+      <Box title="">
+        {children}
+        <CloseButton onClick={onClose} type="button" title={CLOSE_INFO}>
+          <MdOutlineClose size="20px" />
+        </CloseButton>
+      </Box>
     </Overlay>,
     modalRoot,
   )

@@ -14,11 +14,21 @@ export const Overlay = styled.div`
   cursor: pointer;
 `
 export const Box = styled.div`
-  max-width: calc(100vw);
-  max-height: calc(100vh - 40px);
+  position: relative;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
   cursor: auto;
+`
 
-  @media screen and (min-width: 696px) {
-    max-width: calc(100vw - 40px);
-  }
+export const CloseButton = styled.button`
+  border: none;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1100;
+  cursor: pointer;
+  padding: 2px;
+  line-height: 0;
+  top: 0;
+  right: 0;
 `

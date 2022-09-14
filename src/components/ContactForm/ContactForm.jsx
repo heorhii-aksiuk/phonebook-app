@@ -61,7 +61,6 @@ export default function ContactForm({ onSubmitForm }) {
         />
         <Button type="submit">Add contact</Button>
       </form>
-      {/* <Modal></Modal> */}
     </>
   )
 }
