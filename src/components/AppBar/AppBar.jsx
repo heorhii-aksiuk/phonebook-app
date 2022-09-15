@@ -1,24 +1,52 @@
-// import ThemeSwitch from '../ThemeSwitch'
+import { IoBookOutline } from 'react-icons/io5'
+import { BsPlusCircle, BsSearch } from 'react-icons/bs'
+
 import { useToggle } from '../../hooks'
-import Button from '../Button'
+// import Button from '../Button'
 import Modal from '../Modal'
-import { Header, Logo, My, Phonebook } from './AppBar.styled'
+import {
+  Header,
+  Container,
+  Logo,
+  LogoText,
+  IconButton,
+  Navigation,
+  List,
+  Item,
+} from './AppBar.styled'
 
 export default function AppBar() {
   const [showModal, toggleModal] = useToggle()
 
   return (
-    <Header>
-      <Logo>
-        <My>My</My>
-        <Phonebook>Phonebook</Phonebook>
-      </Logo>
-      {
-        <Button onClick={toggleModal} type="button">
-          +
-        </Button>
-      }
+    <>
+      <Header>
+        <Container>
+          <Logo>
+            <LogoText>
+              <IoBookOutline color="#fff" size="24px" />
+              Phonebook
+            </LogoText>
+          </Logo>
+
+          <Navigation>
+            <List>
+              <Item>
+                <IconButton onClick={toggleModal} type="button">
+                  <BsPlusCircle color="#fff" size="20px" />
+                </IconButton>
+              </Item>
+              <Item>
+                <IconButton onClick={toggleModal} type="button">
+                  <BsSearch color="#fff" size="20px" />
+                </IconButton>
+              </Item>
+            </List>
+          </Navigation>
+        </Container>
+      </Header>
+
       {showModal && <Modal onClose={toggleModal}></Modal>}
-    </Header>
+    </>
   )
 }

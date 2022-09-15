@@ -1,5 +1,5 @@
 const common = {
-  accentColor: '#2faf55',
+  accentColor: '#2f5eaf',
   buttonHoverColor: '#303f9f',
   buttonActiveColor: '#1c2769',
   transition: 'all 250ms cubic-bezier(0.4, 0, 0.2, 1)',
