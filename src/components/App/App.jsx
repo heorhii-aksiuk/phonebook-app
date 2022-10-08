@@ -7,27 +7,36 @@ import GlobalStyle from '../../styles'
 import { ThemeProvider } from 'styled-components'
 import { light } from '../../theme'
 import AppBar from '../AppBar'
+import { useDispatch, useSelector } from 'react-redux'
+import { getContacts, getFilter } from '../../redux/selectors'
+import { addContact, deleteContact } from '../../redux/contactsSlice'
+import { setFilter } from '../../redux/filterSlice'
 
 const ALERT_MESSAGE = (name) => `${name} is already exists!`
 
 export default function App() {
-  const [contacts, setContacts] = useLocalStorage('contacts')
-  const [filter, setFilter] = useState('')
+  // const [contacts, setContacts] = useLocalStorage('contacts')
+  // const [filter, setFilter] = useState('')
+  const dispatch = useDispatch()
+  const contacts = useSelector(getContacts)
+  const filter = useSelector(getFilter)
 
   const handleSubmit = (newContact) => {
     if (contacts.some((contact) => contact.name === newContact.name)) {
       return alert(ALERT_MESSAGE(newContact.name))
     }
-    setContacts((contacts) => [newContact, ...contacts])
+    dispatch(addContact(newContact))
+    // setContacts((contacts) => [newContact, ...contacts])
   }
 
   const handleFilter = (event) => {
     const filter = event.target.value
-    setFilter(filter)
+    dispatch(setFilter(filter))
   }
 
   const handleRemove = (name) => {
-    setContacts(contacts.filter((contact) => contact.name !== name))
+    dispatch(deleteContact(name))
+    // setContacts(contacts.filter((contact) => contact.name !== name))
   }
 
   const filteredContacts = useMemo(
