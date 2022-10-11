@@ -1,3 +1,3 @@
-export const getContacts = (store) => store.contacts
+export const selectContacts = (store) => store.contacts
 
-export const getFilter = (store) => store.filter
+export const selectFilter = (store) => store.filter
