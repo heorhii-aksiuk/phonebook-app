@@ -8,3 +8,10 @@ export const store = configureStore({
     filter: filterReducer,
   },
 })
+
+/* TODO: 
+  contacts: {
+    items: [],
+    filter: '',
+  }
+} */
