@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components'
 import { selectContacts, selectFilter } from '../../store/selectors'
 import { setFilter } from '../../store/contacts/filterSlice'
 import { addContact, deleteContact } from '../../store/contacts/itemsSlice'
+import { useGetContactsQuery } from '../../store/contacts/contactsApi'
 import AppBar from '../AppBar'
 import Section from '../Section'
 import ContactForm from '../ContactForm'
@@ -17,6 +18,8 @@ export default function App() {
   const dispatch = useDispatch()
   const contacts = useSelector(selectContacts)
   const filter = useSelector(selectFilter)
+  const { data } = useGetContactsQuery()
+  console.log(data)
 
   const handleSubmit = (newContact) => {
     if (contacts.some((contact) => contact.name === newContact.name)) {

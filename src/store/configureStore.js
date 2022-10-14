@@ -1,4 +1,5 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import { setupListeners } from '@reduxjs/toolkit/query/react'
 import {
   persistStore,
   persistReducer,
@@ -12,6 +13,7 @@ import {
 import storage from 'redux-persist/lib/storage'
 import { itemsReducer } from './contacts/itemsSlice'
 import { filterReducer } from './contacts/filterSlice'
+import { contactsApi } from './contacts/contactsApi'
 
 const contactsPersistConfig = {
   key: 'contacts',
@@ -27,13 +29,19 @@ const contactsReducer = combineReducers({
 export const store = configureStore({
   reducer: {
     contacts: persistReducer(contactsPersistConfig, contactsReducer),
+    [contactsApi.reducerPath]: contactsApi.reducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
+  // https://redux-toolkit.js.org/usage/usage-guide#working-with-non-serializable-data
+  middleware: (getDefaultMiddleware) => [
+    ...getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
+    contactsApi.middleware,
+  ],
 })
+
+setupListeners(store.dispatch)
 
 export const persistor = persistStore(store)
