@@ -33,11 +33,7 @@ export const store = configureStore({
   },
   // https://redux-toolkit.js.org/usage/usage-guide#working-with-non-serializable-data
   middleware: (getDefaultMiddleware) => [
-    ...getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+    ...getDefaultMiddleware(),
     contactsApi.middleware,
   ],
 })
