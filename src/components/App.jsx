@@ -1,19 +1,19 @@
 import { useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
-import { selectFilter } from '../../store/selectors'
-import { setFilter } from '../../store/contacts/filterSlice'
+import { selectFilter } from '../store/selectors'
+import { setFilter } from '../store/contacts/filterSlice'
 import {
   useGetContactsQuery,
   useAddContactMutation,
   useDeleteContactMutation,
-} from '../../store/contacts/contactsApi'
-import AppBar from '../AppBar'
-import Section from '../Section'
-import ContactForm from '../ContactForm'
-import ContactList from '../ContactList'
-import GlobalStyle from '../../styles'
-import { light } from '../../theme'
+} from '../store/contacts/contactsApi'
+import AppBar from './AppBar'
+import Section from './Section'
+import ContactForm from './ContactForm'
+import ContactList from './ContactList'
+import GlobalStyle from '../styles'
+import { light } from '../theme'
 
 const ALERT_MESSAGE = (name) => `${name} is already exists!`
 
@@ -42,11 +42,11 @@ export default function App() {
 
   const filteredContacts = useMemo(() => {
     if (contacts) {
-      return [
-        ...contacts.filter((contact) =>
+      return contacts
+        .filter((contact) =>
           contact.name.toLowerCase().includes(filter.toLowerCase()),
-        ),
-      ].reverse()
+        )
+        .reverse()
     }
   }, [contacts, filter])
 

@@ -1,4 +1,4 @@
-import ContactItem from '../ContactItem'
+import ContactItem from './ContactItem'
 
 export default function ContactList({
   removeContact,

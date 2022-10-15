@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const Button = styled.button`
   margin: 5px;
@@ -10,6 +10,6 @@ const Button = styled.button`
   :hover {
     background-color: #5858d7;
   }
-`;
+`
 
-export default Button;
+export default Button

@@ -1,4 +1,4 @@
-import Button from '../Button'
+import Button from './Button.styled'
 
 export default function ContactItem({ name, phone, removeContact }) {
   return (

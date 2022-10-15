@@ -1,6 +1,6 @@
 import { useId, useState } from 'react'
 // import Modal from '../Modal'
-import Button from '../Button'
+import Button from './Button.styled'
 
 const INPUT = {
   NAME: {
