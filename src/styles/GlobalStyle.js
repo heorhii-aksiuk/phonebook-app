@@ -31,6 +31,10 @@ img {
 a {
   text-decoration: none;
 }
+
+body {
+  background-color: #ccc;
+}
 `
 
 // body {

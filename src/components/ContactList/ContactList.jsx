@@ -1,4 +1,4 @@
-import ContactItem from '../ContactItem';
+import ContactItem from '../ContactItem'
 
 export default function ContactList({
   removeContact,
@@ -8,16 +8,18 @@ export default function ContactList({
   return (
     <>
       <input onChange={onFilterChange} type="text"></input>
-      <ul>
-        {contacts.map(({ name, number }) => (
-          <ContactItem
-            key={name}
-            name={name}
-            number={number}
-            removeContact={() => removeContact(name)}
-          />
-        ))}
-      </ul>
+      {contacts && (
+        <ul>
+          {contacts.map(({ name, number, id }) => (
+            <ContactItem
+              key={id}
+              name={name}
+              number={number}
+              removeContact={() => removeContact(id)}
+            />
+          ))}
+        </ul>
+      )}
     </>
-  );
+  )
 }
