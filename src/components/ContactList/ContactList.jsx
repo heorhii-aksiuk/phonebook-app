@@ -10,11 +10,11 @@ export default function ContactList({
       <input onChange={onFilterChange} type="text"></input>
       {contacts && (
         <ul>
-          {contacts.map(({ name, number, id }) => (
+          {contacts.map(({ name, phone, id }) => (
             <ContactItem
               key={id}
               name={name}
-              number={number}
+              phone={phone}
               removeContact={() => removeContact(id)}
             />
           ))}

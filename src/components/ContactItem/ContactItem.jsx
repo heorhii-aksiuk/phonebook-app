@@ -1,12 +1,12 @@
-import Button from '../Button';
+import Button from '../Button'
 
-export default function ContactItem({ name, number, removeContact }) {
+export default function ContactItem({ name, phone, removeContact }) {
   return (
     <li key={name}>
-      {name} - {number}
+      {name} - {phone}
       <Button onClick={removeContact} type="button">
         Delete
       </Button>
     </li>
-  );
+  )
 }
