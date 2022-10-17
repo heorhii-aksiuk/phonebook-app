@@ -42,11 +42,14 @@ export default function App() {
 
   const filteredContacts = useMemo(() => {
     if (contacts) {
-      return contacts
-        .filter((contact) =>
-          contact.name.toLowerCase().includes(filter.toLowerCase()),
-        )
-        .reverse()
+      return (
+        contacts
+          .filter((contact) =>
+            contact.name.toLowerCase().includes(filter.toLowerCase()),
+          )
+          //TODO: move reverse in different function
+          .reverse()
+      )
     }
   }, [contacts, filter])
 
