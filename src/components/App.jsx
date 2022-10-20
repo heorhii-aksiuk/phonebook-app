@@ -14,6 +14,7 @@ import ContactForm from './ContactForm'
 import ContactList from './ContactList'
 import GlobalStyle from '../styles'
 import { light } from '../theme'
+// import { Route, Routes } from 'react-router-dom'
 
 const ALERT_MESSAGE = (name) => `${name} is already exists!`
 
@@ -57,7 +58,14 @@ export default function App() {
     <>
       <ThemeProvider theme={light}>
         <GlobalStyle />
-        <AppBar></AppBar>
+        {/* <Routes>
+          <Route path="/">
+            <Route path="contacts"></Route>
+            <Route path="login"></Route>
+            <Route path="signup"></Route>
+          </Route>
+        </Routes> */}
+        <AppBar />
         <Section title="Phonebook">
           <ContactForm onSubmitForm={handleSubmit}></ContactForm>
         </Section>

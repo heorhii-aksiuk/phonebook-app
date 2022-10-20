@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 import { IoBookOutline } from 'react-icons/io5'
 import { BsPlusCircle, BsSearch } from 'react-icons/bs'
+import { IoExitOutline } from 'react-icons/io5'
 
 import { useToggle } from '../hooks'
-// import Button from '../Button'
+// import Button from './Button.styled'
 import Modal from './Modal'
 
 export default function AppBar() {
@@ -30,6 +31,11 @@ export default function AppBar() {
               <Item>
                 <IconButton onClick={toggleModal} type="button">
                   <BsSearch color="#fff" size="20px" />
+                </IconButton>
+              </Item>
+              <Item>
+                <IconButton onClick={toggleModal} type="button">
+                  <IoExitOutline color="#fff" size="25px" />
                 </IconButton>
               </Item>
             </List>
