@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import { selectFilter } from '../store/selectors'
 import { setFilter } from '../store/contacts/filterSlice'
 import {
@@ -14,6 +14,7 @@ import ContactForm from './ContactForm'
 import ContactList from './ContactList'
 import GlobalStyle from '../styles'
 import { light } from '../theme'
+import { Router } from 'react-router-dom'
 // import { Route, Routes } from 'react-router-dom'
 
 const ALERT_MESSAGE = (name) => `${name} is already exists!`
@@ -58,6 +59,7 @@ export default function App() {
     <>
       <ThemeProvider theme={light}>
         <GlobalStyle />
+
         {/* <Routes>
           <Route path="/">
             <Route path="contacts"></Route>
@@ -65,18 +67,25 @@ export default function App() {
             <Route path="signup"></Route>
           </Route>
         </Routes> */}
-        <AppBar />
-        <Section title="Phonebook">
-          <ContactForm onSubmitForm={handleSubmit}></ContactForm>
-        </Section>
-        <Section title="Contacts">
-          <ContactList
-            onFilterChange={handleFilter}
-            contacts={filteredContacts}
-            removeContact={handleRemove}
-          ></ContactList>
-        </Section>
+        <Container>
+          <AppBar />
+          <Section title="Phonebook">
+            <ContactForm onSubmitForm={handleSubmit}></ContactForm>
+          </Section>
+          <Section title="Contacts">
+            <ContactList
+              onFilterChange={handleFilter}
+              contacts={filteredContacts}
+              removeContact={handleRemove}
+            ></ContactList>
+          </Section>
+        </Container>
       </ThemeProvider>
     </>
   )
 }
+
+const Container = styled.div`
+  margin: 0 auto;
+  max-width: 767px;
+`

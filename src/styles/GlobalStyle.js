@@ -33,15 +33,11 @@ a {
 }
 
 body {
-  background-color: #ccc;
+  font-family: ${(props) => props.theme.mainFont};
+  color: ${(props) => props.theme.mainTextColor};
+  background-color: ${(props) => props.theme.mainBackgroundColor};
+  font-weight: 400;
 }
 `
-
-// body {
-//   font-family: ${(props) => props.theme.fontFamily};
-//   color: ${(props) => props.theme.color.mainText};
-//   background-color: ${(props) => props.theme.color.mainBackground};
-//   font-weight: 400;
-// }
 
 export default GlobalStyle
