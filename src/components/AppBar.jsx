@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { IoBookOutline } from 'react-icons/io5'
 import { BsPlusCircle, BsSearch, BsSortUpAlt } from 'react-icons/bs'
-import { IoExitOutline } from 'react-icons/io5'
-import { TbArrowsSort } from 'react-icons/tb'
+import { IoExitOutline } from 'react-icons/io'
+import { CiSquarePlus, CiSearch, CiLineHeight } from 'react-icons/ci'
+
 // import { useToggle } from '../hooks'
 // import Button from './Button.styled'
 // import Modal from './Modal'
@@ -21,13 +22,13 @@ export default function AppBar() {
         <ControlContainer>
           <ControlList>
             <ControlItem>
-              <SortIcon />
-            </ControlItem>
-            <ControlItem>
               <AddIcon />
             </ControlItem>
             <ControlItem>
               <SearchIcon />
+            </ControlItem>
+            <ControlItem>
+              <SortIcon />
             </ControlItem>
           </ControlList>
         </ControlContainer>
@@ -97,15 +98,15 @@ const ControlItem = styled.li`
   }
 `
 
-const AddIcon = styled(BsPlusCircle)`
-  height: 24px;
-  width: 24px;
+const AddIcon = styled(CiSquarePlus)`
+  height: 34px;
+  width: 34px;
 `
-const SearchIcon = styled(BsSearch)`
-  height: 24px;
-  width: 24px;
+const SearchIcon = styled(CiSearch)`
+  height: 34px;
+  width: 34px;
 `
-const SortIcon = styled(BsSortUpAlt)`
-  height: 24px;
-  width: 24px;
+const SortIcon = styled(CiLineHeight)`
+  height: 34px;
+  width: 34px;
 `
