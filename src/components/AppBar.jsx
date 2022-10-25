@@ -1,10 +1,7 @@
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { IoBookOutline } from 'react-icons/io5'
-import { BsPlusCircle, BsSearch, BsSortUpAlt } from 'react-icons/bs'
-import { IoExitOutline } from 'react-icons/io'
 import { CiSquarePlus, CiSearch, CiLineHeight } from 'react-icons/ci'
-
+// import { Link } from 'react-router-dom'
 // import { useToggle } from '../hooks'
 // import Button from './Button.styled'
 // import Modal from './Modal'
