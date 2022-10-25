@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom'
 import SharedLayout from './SharedLayout'
 import LoginView from '../views/LoginView'
 import SignupView from '../views/SignupView'
+import NotFoundView from '../views/NotFoundView'
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
             <Route path="contacts" element={<ContactsView />}></Route>
             <Route path="login" element={<LoginView />}></Route>
             <Route path="signup" element={<SignupView />}></Route>
+            <Route path="*" element={<NotFoundView />}></Route>
           </Route>
         </Routes>
       </ThemeProvider>
