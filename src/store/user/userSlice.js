@@ -15,7 +15,6 @@ const userSlice = createSlice({
       state.email = action.payload.user.email
     },
     [login.fulfilled](state, action) {
-      console.log(action)
       state.name = action.payload.user.name
       state.email = action.payload.user.email
     },
@@ -27,3 +26,5 @@ const userSlice = createSlice({
 })
 
 export const userReducer = userSlice.reducer
+
+//TODO: rejected reducers
