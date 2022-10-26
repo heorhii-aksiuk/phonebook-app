@@ -1,8 +1,11 @@
 import { useState, useId } from 'react'
+import { useDispatch } from 'react-redux'
+import { login } from '../store/user/userOperations'
 
 export default function LoginView() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -13,7 +16,9 @@ export default function LoginView() {
   const handleSubmit = (event) => {
     event.preventDefault()
     const user = { email, password }
-    console.log(user)
+    dispatch(login(user))
+    setEmail('')
+    setPassword('')
   }
 
   const id = useId()

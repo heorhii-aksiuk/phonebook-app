@@ -2,6 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import token from '../../services/api/token'
 
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com'
+
 export const signup = createAsyncThunk('user/signup', async (credentials) => {
   try {
     const { data } = await axios.post('users/signup', credentials)

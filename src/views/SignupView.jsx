@@ -1,9 +1,12 @@
-import React, { useId, useState } from 'react'
+import { useId, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { signup } from '../store/user/userOperations'
 
 export default function SignupView() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -15,7 +18,10 @@ export default function SignupView() {
   const handleSubmit = (event) => {
     event.preventDefault()
     const newUser = { name, email, password }
-    console.log(newUser)
+    dispatch(signup(newUser))
+    setName('')
+    setEmail('')
+    setPassword('')
   }
 
   const id = useId()

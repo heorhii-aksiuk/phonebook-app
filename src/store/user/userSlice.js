@@ -11,12 +11,13 @@ const userSlice = createSlice({
   initialState,
   extraReducers: {
     [signup.fulfilled](state, action) {
-      state.name = action.payload.name
-      state.email = action.payload.email
+      state.name = action.payload.user.name
+      state.email = action.payload.user.email
     },
     [login.fulfilled](state, action) {
-      state.name = action.payload.name
-      state.email = action.payload.email
+      console.log(action)
+      state.name = action.payload.user.name
+      state.email = action.payload.user.email
     },
     [logout.fulfilled](state) {
       state.name = null
