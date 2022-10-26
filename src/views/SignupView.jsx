@@ -14,8 +14,8 @@ export default function SignupView() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const user = { name, email, password }
-    console.log(user)
+    const newUser = { name, email, password }
+    console.log(newUser)
   }
 
   const id = useId()
