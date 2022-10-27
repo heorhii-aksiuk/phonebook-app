@@ -7,6 +7,7 @@ import SharedLayout from './SharedLayout'
 import LoginView from '../views/LoginView'
 import SignupView from '../views/SignupView'
 import NotFoundView from '../views/NotFoundView'
+import PrivateRoute from '../components/PrivateRoute'
 
 export default function App() {
   return (
@@ -15,8 +16,14 @@ export default function App() {
         <GlobalStyle />
         <Routes>
           <Route path="/" element={<SharedLayout />}>
-            <Route index element={<ContactsView />}></Route>
-            <Route path="contacts" element={<ContactsView />}></Route>
+            <Route
+              index
+              element={<PrivateRoute component={<ContactsView />} />}
+            ></Route>
+            <Route
+              path="contacts"
+              element={<PrivateRoute component={<ContactsView />} />}
+            ></Route>
             <Route path="login" element={<LoginView />}></Route>
             <Route path="signup" element={<SignupView />}></Route>
             <Route path="*" element={<NotFoundView />}></Route>
