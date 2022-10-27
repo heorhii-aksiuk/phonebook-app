@@ -1,3 +1,5 @@
 export const selectFilter = (store) => store.filter
 
-export const selectUser = (store) => store.user
+export const selectUserName = (store) => store.user.name
+
+export const selectUserIsLogin = (store) => store.user.isLogin
