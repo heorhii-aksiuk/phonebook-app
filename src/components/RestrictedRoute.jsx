@@ -2,11 +2,10 @@ import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import { selectIsLoggedIn } from '../store/selectors'
 
-export default function PrivateRoute({
+export default function RestrictedRoute({
   component: Component,
-  redirectTo = '/login',
+  redirectTo = '/',
 }) {
   const isLoggedIn = useSelector(selectIsLoggedIn)
-  return isLoggedIn ? Component : <Navigate to={redirectTo} />
+  return isLoggedIn ? <Navigate to={redirectTo} /> : Component
 }
-//TODO: add isRefreshing
