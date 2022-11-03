@@ -1,6 +1,6 @@
 import { useState, useId } from 'react'
 import { useDispatch } from 'react-redux'
-import { login } from '../store/user/userOperations'
+import { login } from '../store/user/operations'
 
 export default function LoginView() {
   const [email, setEmail] = useState('')

@@ -1,6 +1,6 @@
 import { useId, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { signup } from '../store/user/userOperations'
+import { signup } from '../store/user/operations'
 
 export default function SignupView() {
   const [name, setName] = useState('')
