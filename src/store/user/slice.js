@@ -1,34 +1,46 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { signup, login, logout } from './operations'
+import { signup, login, logout, current } from './operations'
 
 const initialState = {
-  name: null,
-  email: null,
+  user: { name: null, email: null },
+  token: null,
   isLoggedIn: false,
+  isRefreshing: false,
 }
 
-const userSlice = createSlice({
-  name: 'user',
+const authSlice = createSlice({
+  name: 'auth',
   initialState,
   extraReducers: {
-    [signup.fulfilled](state, action) {
-      state.name = action.payload.user.name
-      state.email = action.payload.user.email
+    [signup.fulfilled](state, { payload }) {
+      state.user = payload.user
+      state.token = payload.token
       state.isLoggedIn = true
     },
-    [login.fulfilled](state, action) {
-      state.name = action.payload.user.name
-      state.email = action.payload.user.email
+    [login.fulfilled](state, { payload }) {
+      state.user = payload.user
+      state.token = payload.token
       state.isLoggedIn = true
     },
     [logout.fulfilled](state) {
-      state.name = null
-      state.email = null
+      state.user = { name: null, email: null }
+      state.token = null
       state.isLoggedIn = false
+    },
+    [current.pending](state) {
+      state.isRefreshing = true
+    },
+    [current.fulfilled](state, { payload }) {
+      state.user = payload.user
+      state.isRefreshing = false
+      state.isLoggedIn = true
+    },
+    [current.rejected](state) {
+      state.isRefreshing = false
     },
   },
 })
 
-export const userReducer = userSlice.reducer
+export const authReducer = authSlice.reducer
 
 //TODO: rejected reducers

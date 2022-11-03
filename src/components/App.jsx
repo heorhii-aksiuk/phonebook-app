@@ -9,9 +9,24 @@ import SignupView from '../views/SignupView'
 import NotFoundView from '../views/NotFoundView'
 import PrivateRoute from '../components/PrivateRoute'
 import RestrictedRoute from './RestrictedRoute'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectIsRefreshing } from '../store/selectors'
+import { useEffect } from 'react'
+import { current } from '../store/user/operations'
 
 export default function App() {
-  return (
+  const dispatch = useDispatch()
+  const isRefreshing = useSelector(selectIsRefreshing)
+
+  useEffect(() => {
+    dispatch(current())
+  }, [dispatch])
+
+  console.log(isRefreshing)
+
+  return isRefreshing ? (
+    <p>...Refreshing</p>
+  ) : (
     <>
       <ThemeProvider theme={light}>
         <GlobalStyle />
