@@ -1,12 +1,8 @@
 import { useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectFilter } from '../store/selectors'
-import { setFilter } from '../store/contacts/filterSlice'
-import {
-  useGetContactsQuery,
-  useAddContactMutation,
-  useDeleteContactMutation,
-} from '../store/contacts/contactsApi'
+import { selectContacts, selectFilter } from '../store/selectors'
+import { setFilter } from '../store/contacts/slice'
+import { addContact, deleteContact } from '../store/contacts/operations'
 import Section from '../components/Section'
 import ContactForm from '../components/ContactForm'
 import ContactList from '../components/ContactList'
@@ -16,19 +12,17 @@ const ALERT_MESSAGE = (name) => `${name} is already exists!`
 export default function ContactsView() {
   const dispatch = useDispatch()
   const filter = useSelector(selectFilter)
-  const { data: contacts } = useGetContactsQuery()
-  const [addContact] = useAddContactMutation()
-  const [deleteContact] = useDeleteContactMutation()
+  const contacts = useSelector(selectContacts)
 
   const handleSubmit = (newContact) => {
     if (contacts.some((contact) => contact.name === newContact.name)) {
       return alert(ALERT_MESSAGE(newContact.name))
     }
-    addContact(newContact)
+    dispatch(addContact(newContact))
   }
 
-  const handleRemove = (name) => {
-    deleteContact(name)
+  const handleRemove = (id) => {
+    dispatch(deleteContact(id))
   }
 
   const handleFilter = (event) => {

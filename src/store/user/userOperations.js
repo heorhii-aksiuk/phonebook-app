@@ -3,6 +3,7 @@ import axios from 'axios'
 import token from '../../services/api/token'
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com'
+//TODO: move
 
 export const signup = createAsyncThunk('user/signup', async (credentials) => {
   try {
