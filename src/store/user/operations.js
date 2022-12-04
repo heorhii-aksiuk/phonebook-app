@@ -5,9 +5,9 @@ import token from '../../services/api/token'
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com'
 //TODO: move
 
-export const signup = createAsyncThunk('auth/signup', async (credentials) => {
+export const signup = createAsyncThunk('auth/signup', async (user) => {
   try {
-    const { data } = await axios.post('users/signup', credentials)
+    const { data } = await axios.post('users/signup', user)
     token.set(data.token)
     return data
   } catch (error) {
@@ -15,9 +15,9 @@ export const signup = createAsyncThunk('auth/signup', async (credentials) => {
   }
 })
 
-export const login = createAsyncThunk('auth/login', async (credentials) => {
+export const login = createAsyncThunk('auth/login', async (user) => {
   try {
-    const { data } = await axios.post('users/login', credentials)
+    const { data } = await axios.post('users/login', user)
     token.set(data.token)
     return data
   } catch (error) {
@@ -25,22 +25,25 @@ export const login = createAsyncThunk('auth/login', async (credentials) => {
   }
 })
 
-export const current = createAsyncThunk('auth/current', async (_, thunkAPI) => {
-  const state = thunkAPI.getState()
-  const persistedToken = state.auth.token
+export const fetchCurrentUser = createAsyncThunk(
+  'auth/current',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState()
+    const persistedToken = state.auth.token
 
-  if (!persistedToken) {
-    return thunkAPI.rejectWithValue('Unable to fetch user')
-  }
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue('Unable to fetch user')
+    }
 
-  try {
-    token.set(persistedToken)
-    const { data } = await axios.get('users/current')
-    return data
-  } catch (error) {
-    alert(error.message)
-  }
-})
+    try {
+      token.set(persistedToken)
+      const { data } = await axios.get('users/current')
+      return data
+    } catch (error) {
+      alert(error.message)
+    }
+  },
+)
 
 export const logout = createAsyncThunk('auth/logout', async () => {
   try {

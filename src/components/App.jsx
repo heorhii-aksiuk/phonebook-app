@@ -12,17 +12,15 @@ import RestrictedRoute from './RestrictedRoute'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectIsRefreshing } from '../store/selectors'
 import { useEffect } from 'react'
-import { current } from '../store/user/operations'
+import { fetchCurrentUser } from '../store/user/operations'
 
 export default function App() {
   const dispatch = useDispatch()
   const isRefreshing = useSelector(selectIsRefreshing)
 
   useEffect(() => {
-    dispatch(current())
+    dispatch(fetchCurrentUser())
   }, [dispatch])
-
-  console.log(isRefreshing)
 
   return isRefreshing ? (
     <p>...Refreshing</p>
