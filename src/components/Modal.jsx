@@ -8,6 +8,7 @@ const CLOSE_INFO = 'Click to close'
 const modalRoot = document.getElementById('modal-root')
 
 export default function Modal({ onClose, children }) {
+  //TODO: move the effect in a custom hook
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {

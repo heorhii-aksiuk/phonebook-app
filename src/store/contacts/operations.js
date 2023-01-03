@@ -8,6 +8,7 @@ export const getContacts = createAsyncThunk(
       const { data } = await axios.get('contacts')
       return data
     } catch (error) {
+      //TODO: Remove this alert. Use different error handling
       alert(error.message)
     }
   },

@@ -5,6 +5,7 @@ import { CiSquarePlus, CiSearch, CiLineHeight } from 'react-icons/ci'
 // import { useToggle } from '../hooks'
 // import Button from './Button.styled'
 // import Modal from './Modal'
+//TODO: Finish this component
 
 export default function AppBar() {
   return (

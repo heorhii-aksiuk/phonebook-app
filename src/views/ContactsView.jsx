@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectContacts, selectFilter } from '../store/selectors'
 import { setFilter } from '../store/contacts/slice'
@@ -10,7 +10,6 @@ import {
 import Section from '../components/Section'
 import ContactForm from '../components/ContactForm'
 import ContactList from '../components/ContactList'
-import { useEffect } from 'react'
 
 const ALERT_MESSAGE = (name) => `${name} is already exists!`
 
@@ -46,7 +45,7 @@ export default function ContactsView() {
           .filter((contact) =>
             contact.name.toLowerCase().includes(filter.toLowerCase()),
           )
-          //TODO: move reverse in different function
+          //TODO: move the reverse in a different function
           .reverse()
       )
     }

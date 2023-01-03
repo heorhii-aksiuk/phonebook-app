@@ -1,3 +1,4 @@
+//TODO: Remove this component
 import styled from 'styled-components';
 
 export default function Section({ title, children }) {

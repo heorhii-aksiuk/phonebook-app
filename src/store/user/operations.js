@@ -3,7 +3,7 @@ import axios from 'axios'
 import token from '../../services/api/token'
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com'
-//TODO: move
+//TODO: move expression and string in a variable
 
 export const signup = createAsyncThunk('auth/signup', async (user) => {
   try {
@@ -21,6 +21,7 @@ export const login = createAsyncThunk('auth/login', async (user) => {
     token.set(data.token)
     return data
   } catch (error) {
+    //TODO: Remove this alert. Use different error handling
     alert(error.message)
   }
 })
@@ -32,6 +33,7 @@ export const fetchCurrentUser = createAsyncThunk(
     const persistedToken = state.auth.token
 
     if (!persistedToken) {
+      //TODO: fix magic string
       return thunkAPI.rejectWithValue('Unable to fetch user')
     }
 

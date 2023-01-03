@@ -1,6 +1,6 @@
 import { useId, useState } from 'react'
-// import Modal from '../Modal'
 import Button from './Button.styled'
+// TODO: Remove into a modal
 
 const INPUT = {
   NAME: {
@@ -10,7 +10,7 @@ const INPUT = {
   },
   NUMBER: {
     PATTERN: '+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}',
-    //TODO: don't work, need to change pattern
+    //TODO: don't work, need to change the pattern
     TITLE:
       'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +',
   },

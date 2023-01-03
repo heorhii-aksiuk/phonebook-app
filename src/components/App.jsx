@@ -1,18 +1,17 @@
+import { useEffect } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
-import ContactsView from '../views/ContactsView'
+
+import { selectIsRefreshing } from '../store/selectors'
+import { fetchCurrentUser } from '../store/user/operations'
 import GlobalStyle from '../styles'
 import { light } from '../theme'
-import { Route, Routes } from 'react-router-dom'
-import SharedLayout from './SharedLayout'
-import LoginView from '../views/LoginView'
-import SignupView from '../views/SignupView'
-import NotFoundView from '../views/NotFoundView'
-import PrivateRoute from '../components/PrivateRoute'
+
+import PrivateRoute from './PrivateRoute'
 import RestrictedRoute from './RestrictedRoute'
-import { useDispatch, useSelector } from 'react-redux'
-import { selectIsRefreshing } from '../store/selectors'
-import { useEffect } from 'react'
-import { fetchCurrentUser } from '../store/user/operations'
+import SharedLayout from './SharedLayout'
+import { ContactsView, SignupView, LoginView, NotFoundView } from '../views'
 
 export default function App() {
   const dispatch = useDispatch()
@@ -23,6 +22,7 @@ export default function App() {
   }, [dispatch])
 
   return isRefreshing ? (
+    //TODO: Refreshing component
     <p>...Refreshing</p>
   ) : (
     <>
