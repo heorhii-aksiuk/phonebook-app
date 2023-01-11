@@ -10,9 +10,19 @@ export default function SignupView() {
 
   const handleChange = (event) => {
     const { name, value } = event.target
-    if (name === 'name') setName(value)
-    if (name === 'email') setEmail(value)
-    if (name === 'password') setPassword(value)
+    switch (name) {
+      case 'name':
+        setName(value)
+        break
+      case 'email':
+        setEmail(value)
+        break
+      case 'password':
+        setPassword(value)
+        break
+      default:
+        break
+    }
   }
 
   const handleSubmit = (event) => {
